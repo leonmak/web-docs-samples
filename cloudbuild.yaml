@@ -1,8 +1,8 @@
 steps:
   - name: gcr.io/cloud-builders/gsutil
-    args: ["-m", "rm", "-r", "gs://${BRANCH_NAME}"]
+    args: ["-m", "rm", "-r", "gs://cloud-build-{BRANCH_NAME}"]
   - name: gcr.io/cloud-builders/gsutil
-    args: ["-m", "cp", "-r", "./vision/explore-api", "gs://${BRANCH_NAME}"]
+    args: ["-m", "cp", "-r", "./vision/explore-api", "gs://cloud-build-${BRANCH_NAME}"]
   - name: gcr.io/cloud-builders/gsutil
-    args: ["acl", "ch", "-r", "-u", "AllUsers:R", "gs://${BRANCH_NAME}"]
+    args: ["acl", "ch", "-r", "-u", "AllUsers:R", "gs://cloud-build-${BRANCH_NAME}"]
 
