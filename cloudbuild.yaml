@@ -1,4 +1,8 @@
 steps:
   - name: gcr.io/cloud-builders/gsutil
-    args: ["-m", "rsync", "-r", "-c", "-d", "./vision/explore-api", "gs://test-container-build-bucket"]
+    args: ["-m", "rm", "-r", "gs://${BRANCH_NAME}"]
+  - name: gcr.io/cloud-builders/gsutil
+    args: ["-m", "cp", "-r", "./vision/explore-api", "gs://${BRANCH_NAME}"]
+  - name: gcr.io/cloud-builders/gsutil
+    args: ["acl", "ch", "-r", "-u", "AllUsers:R", "gs://${BRANCH_NAME}"]
 
